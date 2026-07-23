@@ -128,8 +128,8 @@ export function LayerView() {
     useEffect(() => {
         let stale = false;
         async function getData() {
-            let dataP = fetchTensorData('gpt-nano-sort-t0-partials.json');
-            let modelP = fetchTensorData('gpt-nano-sort-model.json');
+            let dataP = fetchTensorData('/gpt-nano-sort-t0-partials.json');
+            let modelP = fetchTensorData('/gpt-nano-sort-model.json');
             let nativeBindingsP = loadNativeBindings();
             let [data, model, native] = await Promise.all([dataP, modelP, nativeBindingsP]);
             if (stale) return;
@@ -197,9 +197,12 @@ export function LayerView() {
             className={s.canvas}
             ref={setCanvasEl}
         />
-        {canvasRender && !canvasRender.progState.render && <div className='absolute flex flex-col items-center w-full h-full justify-center'>
-            <div className='text-2xl'>This application requires a WebGL2 capable browser.</div>
-            <div className='text-lg mt-2'>Please try the latest version of Chrome or Firefox.</div>
+        {canvasRender && !canvasRender.progState.render && <div className={s.webglFallback}>
+            <img className={s.fallbackModel} src="/images/llm-viz-screenshot2.png" alt="Exploded 3D transformer topology" />
+            <div className={s.fallbackCopy}>
+                <strong>3D topology preview</strong>
+                <span>Static renderer active because WebGL2 is unavailable in this browser.</span>
+            </div>
         </div>}
         {/* <div className={s.cursorFollow} style={{ top: pointPos.y, left: pointPos.x }} /> */}
         {canvasRender && <ProgramStateContext.Provider value={canvasRender.progState}>
