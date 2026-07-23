@@ -64,3 +64,52 @@
     // touch-action: initial;
     /* image-rendering: pixelated; */
 }
+
+.webglFallback {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 54% 44%, rgba(111, 177, 137, 0.16), transparent 32%),
+        linear-gradient(145deg, #fafcff 0%, #eef3f6 100%);
+}
+
+.fallbackModel {
+    width: min(70%, 560px);
+    height: 82%;
+    object-fit: contain;
+    filter: drop-shadow(0 18px 28px rgba(45, 59, 75, 0.22));
+}
+
+.fallbackCopy {
+    position: absolute;
+    right: 22px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    max-width: 260px;
+    padding: 10px 12px;
+    border: 1px solid rgba(87, 107, 126, 0.24);
+    border-radius: 6px;
+    background: rgba(250, 252, 255, 0.88);
+    box-shadow: 0 8px 20px rgba(45, 59, 75, 0.08);
+    color: #263441;
+    font-family: Roboto, Arial, sans-serif;
+}
+
+.fallbackCopy strong {
+    font-size: 12px;
+    letter-spacing: 0.02em;
+}
+
+.fallbackCopy span {
+    color: #6a7a88;
+    font-size: 10px;
+    line-height: 1.4;
+}
