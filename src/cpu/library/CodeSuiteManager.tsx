@@ -31,7 +31,11 @@ export class CodeSuiteManager {
     }
 
     public getSuite(fileName: string) {
-        this.ensureSuiteLoaded(fileName);
+        // Asset URLs are browser-relative. Deferring the fetch prevents Next's
+        // static renderer from trying to resolve `/riscv/...` as a Node URL.
+        if (typeof window !== 'undefined') {
+            this.ensureSuiteLoaded(fileName);
+        }
         return this.suites.get(fileName);
     }
 
